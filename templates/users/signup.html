@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sign Up - SoleSpace</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="/static/stylesheets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="signup-page">
+    <div class="container">
+      <!-- Content on the left -->
+      <div class="content">
+        <!-- Apply noto-sans-jp class only to the title -->
+        <h2 class="title noto-sans-jp">solespace.</h2>
+        <form method="POST" id="user_form">
+          {{ form.hidden_tag() }} {% for field in form if
+          field.widget.input_type != 'hidden' %} {% for error in field.errors %}
+          <span class="text-danger">{{ error }}</span>
+          {% endfor %} {{ field(placeholder=field.label.text,
+          class="underline-input") }} {% endfor %}
+          <button class="btn btn-primary btn-lg btn-block">Sign Up</button>
+
+          <!-- Login link below the signup button -->
+          <div class="login-link text-center mt-3 signup">
+            <p>
+              <a href="{{ url_for('login') }}">Login</a>
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Background circle on the right -->
+      <div class="background"></div>
+    </div>
+  </body>
+</html>

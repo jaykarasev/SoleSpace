@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% block title %}{{ user.username }}'s Profile{%
+endblock %} {% block content %}
+<!-- Profile Section with unique background -->
+<div class="profile">
+  <!-- User Info Section -->
+  <div class="user-info">
+    <img
+      src="{{ user.image_url }}"
+      alt="{{ user.username }}'s profile picture"
+    />
+    <div class="user-details">
+      <h2 class="noto-sans-jp">{{ user.full_name }}</h2>
+      <p>@{{ user.username }}</p>
+      <button class="prof-edit" onclick="window.location.href='/users/profile'">
+        Edit Profile
+      </button>
+    </div>
+  </div>
+
+  <!-- Closet and Wishlist Blocks Section -->
+  <div class="blocks-container">
+    <!-- Rotation Block -->
+    <div class="block">
+      <a href="/users/{{ user.id }}/rotation">
+        <img
+          class="rotation-icon"
+          src="/static/images/rotation_icon_white.png"
+          alt="Rotation"
+        />
+      </a>
+    </div>
+    <!-- Closet Block -->
+    <div class="block">
+      <a href="/users/{{ user.id }}/closet">
+        <img
+          class="closet-icon"
+          src="/static/images/closet_icon_white.png"
+          alt="Closet"
+        />
+      </a>
+    </div>
+    <!-- Wishlist Block -->
+    <div class="block">
+      <a href="/users/{{ user.id }}/wishlist">
+        <img
+          class="wishlist-icon"
+          src="/static/images/wishlist_icon_white.png"
+          alt="Wishlist"
+        />
+      </a>
+    </div>
+    <!-- Following Block -->
+    <div class="block">
+      <a href="/users/{{ user.id }}/following">
+        <img
+          class="following-icon"
+          src="/static/images/following_icon_white.png"
+          alt="Following"
+        />
+      </a>
+    </div>
+    <!-- Followers Block -->
+    <div class="block">
+      <a href="/users/{{ user.id }}/followers">
+        <img
+          class="followers-icon"
+          src="/static/images/followers_icon_white.png"
+          alt="Followers"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Content Section with website's main background color -->
+<div class="content-section">
+  {% block profile_content %}
+  <!-- Add your additional content here -->
+  {% endblock %}
+</div>
+{% endblock %}

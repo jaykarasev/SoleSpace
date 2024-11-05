@@ -1,0 +1,41 @@
+{% extends "users/profile.html" %} {% block profile_content %}
+<div class="users-page">
+  <h3>FOLLOWING</h3>
+  <!-- Wrapper for styling consistency -->
+  <div class="sneakerheads">
+    {% for followed_user in user.following %}
+    <div class="sneakerhead">
+      <a href="/users/{{ followed_user.id }}">
+        <img
+          src="{{ followed_user.image_url }}"
+          alt="{{ followed_user.username }}"
+          class="sneakerhead-image"
+        />
+        <h4 class="sneakerhead-name">
+          @<a href="/users/{{ followed_user.id }}"
+            >{{ followed_user.username }}</a
+          >
+        </h4>
+        <p>{{ followed_user.bio }}</p>
+      </a>
+      {% if g.user %}
+      <div class="follow-actions">
+        {% if g.user.is_following(followed_user) %}
+        <form
+          method="POST"
+          action="/users/stop-following/{{ followed_user.id }}"
+        >
+          <button class="follow-button">Unfollow</button>
+        </form>
+        {% else %}
+        <form method="POST" action="/users/follow/{{ followed_user.id }}">
+          <button class="follow-button">Follow</button>
+        </form>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
