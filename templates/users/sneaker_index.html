@@ -6,9 +6,9 @@
   <div class="sneaker-card">
     <a href="/sneakers/{{ sneaker.id }}">
       <img
-        src="{{ sneaker.sneaker_image }}"
+        src="{{ sneaker.sneaker_image if sneaker.sneaker_image else url_for('static', filename='images/alternate_image.png') }}"
         alt="{{ sneaker.sneaker_name }}"
-        class="sneaker-image"
+        class="sneaker-image {% if not sneaker.sneaker_image %}alternate-image{% endif %}"
       />
       <h4>{{ sneaker.sneaker_name }}</h4>
       <p>{{ sneaker.brand }}</p>

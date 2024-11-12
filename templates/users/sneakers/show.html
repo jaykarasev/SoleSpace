@@ -4,7 +4,7 @@
   <div class="sneaker-detail-container">
     <div class="sneaker-image-section">
       <img
-        src="{{ sneaker.sneaker_image }}"
+        src="{{ sneaker.sneaker_image if sneaker.sneaker_image else url_for('static', filename='images/alternate_image.png') }}"
         alt="{{ sneaker.sneaker_name }}"
         class="sneaker-detail-image"
       />

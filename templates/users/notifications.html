@@ -34,7 +34,7 @@
       {% if notification.sneaker_image %}
       <a href="/sneakers/{{ notification.sneaker_id }}">
         <img
-          src="{{ notification.sneaker_image }}"
+          src="{{ notification.sneaker_image if notification.sneaker_image else url_for('static', filename='images/alternate_image.png') }}"
           alt="Sneaker image"
           class="sneaker-pic notification-sneaker-pic"
         />

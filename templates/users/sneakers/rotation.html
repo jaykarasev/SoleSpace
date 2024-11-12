@@ -10,10 +10,11 @@
     <div class="sneaker-card">
       <a href="/sneakers/{{ entry.sneaker.id }}">
         <img
-          src="{{ entry.sneaker.sneaker_image }}"
+          src="{{ entry.sneaker.sneaker_image if entry.sneaker.sneaker_image else url_for('static', filename='images/alternate_image.png') }}"
           alt="{{ entry.sneaker.sneaker_name }}"
           class="sneaker-image"
         />
+
         <h4>{{ entry.sneaker.sneaker_name }}</h4>
         <p>{{ entry.sneaker.brand }}</p>
       </a>
