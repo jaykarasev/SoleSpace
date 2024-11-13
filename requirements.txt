@@ -24,6 +24,7 @@ pickleshare
 prompt-toolkit
 psycopg2-binary
 ptyprocess
+python-dotenv
 pycparser
 Pygments
 python-dateutil
