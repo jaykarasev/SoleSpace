@@ -12,6 +12,7 @@ Flask-Bcrypt
 Flask-DebugToolbar
 Flask-SQLAlchemy
 Flask-WTF
+gunicorn
 ipython
 ipython-genutils
 itsdangerous
