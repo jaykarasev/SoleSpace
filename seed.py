@@ -4,9 +4,18 @@ from csv import DictReader
 from app import app, db
 from models import Sneaker
 
-def clean_price(price):
-    """Convert price string to a float after removing '$'."""
-    return float(price.replace('$', '').replace(',', '')) if price else None
+
+def format_price(price):
+    """Format price by removing '$' and converting to float."""
+    try:
+        if price and price.lower() != "not available":
+            # Remove '$' and ',' then convert to float
+            return float(price.replace('$', '').replace(',', ''))
+        return None  # Use None for missing or invalid prices
+    except ValueError as e:
+        print(f"Error formatting price '{price}': {e}")
+        return None
+
 
 with app.app_context():
     db.drop_all()
@@ -16,10 +25,12 @@ with app.app_context():
     with open('generator/sneakers.csv') as sneakers:
         reader = DictReader(sneakers)
         
-        # Clean data before inserting
+        # Format data before inserting
         data = []
         for row in reader:
-            row['retail_price'] = clean_price(row['retail_price'])  # Clean price
+            row['retail_price'] = format_price(row['retail_price'])  # Format price as float
+            if row['retail_price'] is None:  # Log if the price is empty
+                print(f"Price missing for: {row['sneaker_name']}")
             print(f"Inserting: {row}")  # Log each row for debugging
             data.append(row)
         
